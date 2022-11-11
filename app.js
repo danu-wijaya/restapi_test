@@ -12,6 +12,20 @@ app.get("/", (req, res) => {
     message: "wellcome to express restapi tutorials",
     name: "kamandanu",
   });
+
+  const db = require("./app/models/");
+  db.mongoose
+    .connect(db.url, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    .then(() => {
+      console.log("Database Connected");
+    })
+    .catch((err) => {
+      console.log("Can not connect to database", err);
+      process.exit();
+    });
 });
 
 app.listen(port, () => {
